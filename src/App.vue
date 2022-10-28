@@ -41,8 +41,7 @@ export default {
     // window might have been closed with timers running
     // stop all the timers
     this.tasks.forEach((task, i) => {
-      this.tasks[i].running = false;   
-      this.tasks[i].interval = null;     
+      this.stopTask(this.tasks[i]);
     });
   },
   watch: {
