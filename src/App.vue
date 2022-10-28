@@ -93,10 +93,10 @@ export default {
       document.title = `${secondsToString(task.duration)} - ${task.name}`;
     },
     resetTask(task) {
-      if(confirm('Are you sure?')) task.duration=0;
+      if(!task.name.length || confirm('Are you sure?')) task.duration=0;
     },
     removeTask(task) {
-      if(confirm('Are you sure?')) {
+      if(!task.name.length || confirm('Are you sure?')) {
         let index = this.tasks.indexOf(task);
         if(index != -1) {
           this.stopTask(this.tasks[index]);
