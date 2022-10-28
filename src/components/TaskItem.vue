@@ -1,7 +1,7 @@
 <template>
   <div class="taskItem">
     <div class="d-flex">
-      <div class="name"><input type="text" v-model="inputValue" class="form-control" placeholder="Task Name"></div>
+      <div class="name"><input type="text" v-model="inputValue" v-on:keyup.enter="this.$emit('toggle', this.task)" class="form-control" placeholder="Task Name"></div>
       <div class="duration h4 mb-0">{{ durationLabel }}</div>
       <div class="actions">
         <button class="btn" @click="this.$emit('toggle', this.task)" tabindex="-1"><i class="fa-solid" :class="{ 'text-success fa-play': !task.running, 'text-warning fa-pause': task.running }"></i></button>
