@@ -21,15 +21,13 @@
 <script>
 import TaskItem from './components/TaskItem.vue';
 
-let taskid = 1;
-
 export default {
   name: 'App',
   data() {
     return {
       tasks: [
         { 
-          id: taskid,
+          id: 1,
           name: '',
           running: false,
           interval: null,
@@ -38,12 +36,27 @@ export default {
       ] 
     }
   },
+  mounted() {
+    if(localStorage.getItem('tasks')) this.tasks = JSON.parse(localStorage.getItem('tasks'));
+    // window might have been closed with timers running
+    // stop all the timers
+    this.tasks.forEach((task, i) => {
+      this.stopTask(this.tasks[i]);
+    });
+  },
+  watch: {
+    tasks: {
+      handler(newTasks) {
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
+      },
+      deep: true
+    }
+  },
   methods: {
     addTask() {
-      taskid++;
       this.tasks.push(
         { 
-          id: taskid,
+          id: Math.floor(Math.random() * Date.now()), // unique enough
           name: '',
           running: false,
           interval: null,
@@ -69,7 +82,6 @@ export default {
           this.stopTask(t);
         }
       }
-      console.log(task);
     },
     stopTask(task) {
       task.running = false;
