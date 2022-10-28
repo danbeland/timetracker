@@ -1,4 +1,5 @@
-# timetracker
+# Time Tracker
+A basic time tracker for multiple tasks. Quickly switch tracking between tasks.
 
 ## Project setup
 ```
