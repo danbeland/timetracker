@@ -12,8 +12,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Build
+    - name: Install
       run: npm run install
+
+    - name: Build
       run: npm run build
 
     - name: Configure AWS Credentials
