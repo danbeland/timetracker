@@ -38,6 +38,23 @@ export default {
       ] 
     }
   },
+  mounted() {
+    if(localStorage.getItem('tasks')) this.tasks = JSON.parse(localStorage.getItem('tasks'));
+    // window might have been closed with timers running
+    // stop all the timers
+    this.tasks.forEach((task, i) => {
+      this.tasks[i].running = false;   
+      this.tasks[i].interval = null;     
+    });
+  },
+  watch: {
+    tasks: {
+      handler(newTasks) {
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
+      },
+      deep: true
+    }
+  },
   methods: {
     addTask() {
       taskid++;
@@ -69,7 +86,7 @@ export default {
           this.stopTask(t);
         }
       }
-      console.log(task);
+      console.log(this.tasks);
     },
     stopTask(task) {
       task.running = false;
