@@ -30,11 +30,11 @@ export default {
     },
     durationLabel() {
       let seconds = Math.floor((this.task.duration) % 60),
-      minutes = Math.floor((this.task.duration / 60) % 60),
-      hours = Math.floor((this.task.duration / (60 * 60)) % 24);
-      hours = (hours < 10) ? "0" + hours : hours;
-      minutes = (minutes < 10) ? "0" + minutes : minutes;
-      seconds = (seconds < 10) ? "0" + seconds : seconds;
+          minutes = Math.floor((this.task.duration / 60) % 60),
+          hours = Math.floor((this.task.duration / (60 * 60)) % 24);
+      hours = String(hours).padStart(2, '0');
+      minutes = String(minutes).padStart(2, '0'); 
+      seconds = String(seconds).padStart(2, '0'); 
       return hours + ":" + minutes + ":" + seconds;
     }
   }
