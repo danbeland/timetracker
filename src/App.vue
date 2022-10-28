@@ -21,15 +21,13 @@
 <script>
 import TaskItem from './components/TaskItem.vue';
 
-let taskid = 1;
-
 export default {
   name: 'App',
   data() {
     return {
       tasks: [
         { 
-          id: taskid,
+          id: 1,
           name: '',
           running: false,
           interval: null,
@@ -57,10 +55,9 @@ export default {
   },
   methods: {
     addTask() {
-      taskid++;
       this.tasks.push(
         { 
-          id: taskid,
+          id: Math.floor(Math.random() * Date.now()), // unique enough
           name: '',
           running: false,
           interval: null,
@@ -86,7 +83,6 @@ export default {
           this.stopTask(t);
         }
       }
-      console.log(this.tasks);
     },
     stopTask(task) {
       task.running = false;
