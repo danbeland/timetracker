@@ -20,6 +20,7 @@
 
 <script>
 import TaskItem from './components/TaskItem.vue';
+import { secondsToString } from './main';
 
 export default {
   name: 'App',
@@ -89,6 +90,7 @@ export default {
     },
     incrementTask(task) {
       task.duration++;
+      document.title = `${secondsToString(task.duration)} - ${task.name}`;
     },
     resetTask(task) {
       if(confirm('Are you sure?')) task.duration=0;
